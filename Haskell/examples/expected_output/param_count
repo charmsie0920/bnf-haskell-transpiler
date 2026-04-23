@@ -1,0 +1,2 @@
+<pair(a,b)> ::= [alpha] [alpha]
+<expr> ::= <pair(a)>
