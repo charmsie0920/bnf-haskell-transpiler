@@ -1,34 +1,33 @@
----
-title: Assignment 2 - BNF2Haskell
-author: FIT2102 Programming Paradigms
-margin: 1inch
----
+# BNF to Haskell Transpiler
 
-Please do not change the names of the functions defined in the Assignment.hs file. You may (and are highly encouraged) to implement your parsers **alongside** these pre-defined functions.
+A high-performance transpiler implemented in **Haskell** designed to convert Context-Free Grammars defined in **Backus-Naur Form (BNF)** into executable Haskell source code. The system architecturally transforms grammar specifications into a custom **Abstract Data Type (ADT)** before generating corresponding type definitions and recursive descent parsers.
 
-## Running the Code
+## Key Features
 
-```
-$ stack test
-```
+* **Abstract Syntax Tree (AST) Generation**: Efficiently parses raw BNF strings into a structured Intermediary Representation (IR) using robust Algebraic Data Types.
+* **Haskell Code Synthesis**: Automatically generates formatted Haskell source code, including `data` and `newtype` declarations with proper indentation and numbered constructors.
+* **Advanced Grammar Modifiers**: Full support for regex-inspired modifiers including `tok` (whitespace handling), `*` (many), `+` (some), and `?` (optional).
+* **Parameterised Rules**: Implements higher-order grammar rules with unique parameters, enabling the generation of generic Haskell functions with polymorphic type variables.
+* **Iterative BNF Validation**: A multi-step validation engine that detects and reports **Undefined Nonterminals**, **Duplicate Rules**, and **Left Recursion** to ensure the stability of the generated parsers.
 
-This will generate the Haskell files using the sample input BNF files, by running your code for each exercise.
+## Technical Architecture
 
-All example BNF files are stored within `examples/input` and the output of your parser will be saved in `examples/output`.
+This project leverages fundamental and advanced functional programming patterns to ensure type safety and modularity:
 
-## Running the Interactive Page
+* **Parser Combinators**: The parsing engine is constructed using `Functor`, `Applicative`, and `Monad` typeclasses, allowing for the composition of complex logic from small, testable primitives.
+* **Declarative Logic**: Emphasizes pure functions, immutable data structures, and function composition to maintain a clear separation between parsing and code generation.
+* **Full-Stack WebSocket Integration**: Features a **Haskell backend server** that communicates in real-time with a **TypeScript/Next.js frontend** via HTML-based WebSockets.
 
-In the Haskell folder run:
+[Image of an abstract syntax tree diagram for a programming language]
 
-```
-$ stack run
-```
+## Getting Started
 
-In a separate terminal, in the javascript folder run:
+### Prerequisites
+* [Haskell Stack](https://docs.haskellstack.org/en/stable/README/)
+* [Node.js & npm](https://nodejs.org/)
 
-```
-$ npm i
-$ npm run dev
-```
-
-You can type BNF in to the LHS of the webpage and inspect the converted Haskell.
+### Build and Test
+To compile the transpiler and run the automated test suite:
+```bash
+stack build
+stack test
